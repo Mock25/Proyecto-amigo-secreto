@@ -1,28 +1,41 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 
-let nombreDeAmigos = [];
+const nombreInput = document.getElementById('nombreInput');
+const agregarBtn = document.getElementById('agregarBtn');
+const nombresLista = document.getElementById('nombresLista');
+const sortearBtn = document.getElementById('sortearBtn');
+const resultado = document.getElementById('resultado');
 
+let nombres = [];
 
-document.getElementById(amigo);
-function agregarAmigo() {
-    let amigo = document.getElementById(amigo).value;
-    nombreDeAmigos.push(amigo);
-    console.log(nombreDeAmigos);
+agregarBtn.addEventListener('click', () => {
+  const nombre = nombreInput.value.trim();
+
+  if (nombre === '') {
+    alert('Por favor, ingresa un nombre válido.');
+    return;
+  }
+
+  nombres.push(nombre);
+  nombreInput.value = '';
+  mostrarLista();
+});
+
+sortearBtn.addEventListener('click', () => {
+  if (nombres.length === 0) {
+    alert('No hay nombres para sortear.');
+    return;
+  }
+
+  const ganador = nombres[Math.floor(Math.random() * nombres.length)];
+  resultado.textContent = `¡El amigo secreto es: ${ganador}!`;
+});
+
+function mostrarLista() {
+  nombresLista.innerHTML = '';
+  nombres.forEach(nombre => {
+    const li = document.createElement('li');
+    li.textContent = nombre;
+    nombresLista.appendChild(li);
+  });
 }
-
-function mostrarAmigos() {
-    let amigos = document.getElementById('amigos');
-    amigos.innerHTML = nombreDeAmigos;
-}
-
-function buscarAmigo() {
-    let amigo = document.getElementById('amigo').value;
-    let amigos = document.getElementById('amigos');
-    amigos.innerHTML = nombreDeAmigos;
-    if (nombreDeAmigos.includes(amigo)) {
-        amigos.innerHTML = 'Tu amigo está en la lista';
-    } else {
-        amigos.innerHTML = 'Tu amigo no está en la lista';
-    }
-}
-
