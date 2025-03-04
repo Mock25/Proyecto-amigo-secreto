@@ -1,14 +1,14 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 
-const nombreInput = document.getElementById('nombreInput');
-const agregarBtn = document.getElementById('agregarBtn');
-const nombresLista = document.getElementById('nombresLista');
-const sortearBtn = document.getElementById('sortearBtn');
+const nombreInput = document.getElementById('amigo');
+const agregarBtn = document.querySelector('.button-add');
+const nombresLista = document.getElementById('listaAmigos');
+const sortearBtn = document.querySelector('.button-draw');
 const resultado = document.getElementById('resultado');
 
 let nombres = [];
 
-agregarBtn.addEventListener('click', () => {
+function agregarAmigo() {
   const nombre = nombreInput.value.trim();
 
   if (nombre === '') {
@@ -19,17 +19,17 @@ agregarBtn.addEventListener('click', () => {
   nombres.push(nombre);
   nombreInput.value = '';
   mostrarLista();
-});
+}
 
-sortearBtn.addEventListener('click', () => {
+function sortearAmigo() {
   if (nombres.length === 0) {
     alert('No hay nombres para sortear.');
     return;
   }
 
   const ganador = nombres[Math.floor(Math.random() * nombres.length)];
-  resultado.textContent = `¡El amigo secreto es: ${ganador}!`;
-});
+  resultado.innerHTML = `<li>¡El amigo secreto es: ${ganador}!</li>`;
+}
 
 function mostrarLista() {
   nombresLista.innerHTML = '';
